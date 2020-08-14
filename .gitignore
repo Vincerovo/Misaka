@@ -4,3 +4,4 @@ auto/
 *.out
 *.bbl
 *.synctex.gz
+*.pdf
