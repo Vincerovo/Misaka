@@ -1,0 +1,100 @@
+\documentclass[cn,hazy,sakura,screen,14pt]{elegantnote}
+
+\title{极简教程：基于git控制\LaTeX{}的\Tex{}版本管理}
+
+
+\author{Z. Fang}
+\institute{Chem. FDU}
+
+\version{1.00}
+\date{\zhtoday}
+
+
+%\definecolor{geyecolor}{RGB}{199,237,204}
+%\pagecolor{geyecolor}
+
+\begin{document}
+	
+	\maketitle
+	
+	\centerline{
+		\includegraphics[width=0.2\textwidth]{55440964_p1.jpg}
+	}
+	
+	
+	\section{Preface}
+	
+	本文的主要内容为如何基于git对\TeX{}进行版本控制。众所周知，u1s1\footnote{“有一说一”}， \LaTeX{}十分好用，你甚至可以2个小时内完全掌握\footnote{大雾。指某本教程。}。git呢，就是github的那个git，使用之前需要下载一个\footnote{https://git-scm.com/}（这不是废话吗）。行吧，不想听废话直接跳过这一部分好了。
+	
+	如果只是怕写论文而不想建那么多个“最终版”的话，仅仅需要熟记以下几个命令：
+	\begin{itemize}
+		\item \$ git log
+		\item \$ git add
+		\item \$ git commit
+		\item \$ git tag
+		\item \$ git reset
+	\end{itemize}
+	
+	
+	\section{第0步，写你的\TeX{}}
+	这个就无所谓你用什么写啦，什么TexStudio，TexWork，甚至txt写好再编译都一样的，快乐就行。
+
+	\section{第一步，新建git repository}
+	在下载git后，右键空白处，“git bash here”，就可以进入命令行模式。
+	新建的话直接输入
+	\begin{lstlisting}
+		\$ git init %初始化git respiratory,i.e.,将当前目录定义为一个repository
+	\end{lstlisting}	
+	
+	\begin{remark}
+	最好建一个文件夹，将写\TeX{}要用的所有资源放进去，然后直接在里面Bash就行啦。
+	\end{remark}
+	
+	
+	\section{第二步，将文件加入暂存区}
+	将文件加入暂存区\footnote{不考虑Remote的话，git分workspace（你的\TeX{}），index和repository}的命令为：
+	\begin{lstlisting}
+		\$ git add .  %提交目录下的所有文件至暂存区
+		\$ git add 你的文件名.文件类型  %提交目录下的某文件至暂存区，e.g.：git add Hello.docx	
+	\end{lstlisting}
+
+	\section{第三步，暂存区文件提交至repository}
+	这一步需要的命令为：
+	\begin{lstlisting}
+		\$ git commit -m "版本更新日志"	
+	\end{lstlisting}	
+	commit之后就vans\footnote{即“万事”，玩谐音梗，我扣钱。}大吉了！
+
+	\begin{note}
+		你还可以给你的文档加tag：
+		\begin{lstlisting}
+		\$ git tag  %显示所有tag
+		\$ git tag XXX 	%在当下的commit建一个tag
+		\$ git tag XXX XXX 	%给指定commit建tag
+		\end{lstlisting}
+	\end{note}
+	
+	\section{回撤版本}	
+	写文章总会遇到不如意嘛，比如上个版本写的比较好......这个时候，你就需要回退版本了。使用
+	\begin{lstlisting}
+		git reset --hard HEAD^ 	回退一个版本（将版本退回上一个commit的状态）：
+		git reset --hard HEAD^^ 	回退两个版本：
+		git reset --hard HEAD~100  	回退100个版本：
+		git reset --hard 版本号  	回退到指定版本：	
+	\end{lstlisting}
+	版本号可以通过git log查询。git log就是你git的所有记录，你可以慢慢看这里面的日志。
+	
+	\section{致谢}
+	谢谢你！
+		
+	
+	\section{常见问题 FAQ}
+	\begin{enumerate}[label=\arabic*).]
+		\item \textit{有什么问题？}\\
+		你没有问题。
+	\end{enumerate}
+	
+	\section{示例}
+	略。或许此处应该有个示例吧。
+	
+\end{document}
